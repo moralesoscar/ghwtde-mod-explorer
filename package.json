@@ -1,0 +1,31 @@
+{
+  "name": "ghwtde-mod-explorer",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Tool for easier mod management and searching for the game GHWTDE",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/scanner/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moralesoscar/ghwtde-mod-explorer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moralesoscar/ghwtde-mod-explorer/issues"
+  },
+  "homepage": "https://github.com/moralesoscar/ghwtde-mod-explorer#readme",
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/node": "^25.8.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "glob": "^13.0.6",
+    "save-dev": "^0.0.1-security"
+  }
+}
