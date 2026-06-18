@@ -3,8 +3,9 @@
   "type": "module",
   "version": "1.0.0",
   "description": "Tool for easier mod management and searching for the game GHWTDE",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
+    "electron:dev": "electron .",
     "start": "ts-node src/scanner/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@types/glob": "^8.1.0",
     "@types/node": "^25.8.0",
+    "electron": "^42.2.0",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
   },

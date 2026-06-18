@@ -2,17 +2,46 @@ import { useEffect, useState } from 'react'
 import { useDebounce } from 'react-use'
 import './App.css'
 import type { FilesStructure, InfoMod } from '../../src/shared/types'
-import mods from '../../out/filesStructure.json'
+//import mods from '../../out/filesStructure.json'
 import { startCase, capitalize } from 'es-toolkit'
+
+declare global {
+  interface Window {
+    electronAPI: {
+      scanForMods: () => Promise<FilesStructure>;
+    };
+  }
+}
 
 function App() {
   const [type, setType] = useState('song');
-  const [modsData, setModsData] = useState(mods as FilesStructure);
+  const [modsData, setModsData] = useState({category: [],
+                                            venue: [],
+                                            song: [],
+                                            character: [],
+                                            instrument: []} as FilesStructure);
   const [filteredMods, setFilteredMods] = useState(modsData);
   const [orderBy, setOrderBy] = useState('name');
   const [searchTerm, setSearchTerm] = useState('');
   const [debounceSearchTerm, setDebounceSearchTerm] = useState('');
   const [orderDirection, setOrderDirection] = useState(1);
+  const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    async function ScanAndSet() {
+      setLoading(true);
+      console.log('ejecutar scan');
+      if (window.electronAPI) {
+        const scannedModData = await window.electronAPI.scanForMods();
+        setModsData(scannedModData);
+      }
+      console.log('scan terminado');
+      setLoading(false);
+    }
+
+    ScanAndSet();
+  }, []);
 
   useDebounce(() => 
     setDebounceSearchTerm(searchTerm.trim()), 
