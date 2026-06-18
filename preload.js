@@ -1,5 +1,5 @@
-import { contextBridge, ipcRenderer } from "electron";
+const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI', {
-    scanForMods: () => ipcRenderer.invoke('scan-for-mods-action')
+    scanForMods: (modsPath) => ipcRenderer.invoke('scan-for-mods-action', modsPath)
 })

@@ -104,6 +104,8 @@ async function scan(modsPath: string) {
             console.error('Failed to save files structure:', error);
         }
 
+        return filesStructure;
+
     } catch (error) {
         console.error("Error occurred while scanning mods:", error);
     }
@@ -111,4 +113,5 @@ async function scan(modsPath: string) {
 }
 
 const dummypath = "games/Guitar Hero World Tour/DATA/MODS";
-scan(dummypath);
+
+export { scan };

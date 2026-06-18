@@ -2,10 +2,12 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import { scan } from './src/scanner/index.js';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-console.log('App starting...', path.join(__dirname, 'preload.js'));
+console.log('App starting...');
 
 function createWindow() {
     const mainWindow = new BrowserWindow({
@@ -22,9 +24,11 @@ function createWindow() {
     mainWindow.loadURL('http://localhost:5173');
 }
 
-ipcMain.handle('scan-for-mods-action', async () => {
-    // Placeholder for scanning logic
-    console.log('Scanning for mods...');
+ipcMain.handle('scan-for-mods-action', async (event, modsPath) => {
+    console.log('Scanning for mods at', modsPath);
+    const mods = await scan(modsPath);
+    console.log('Scan completed.');
+    return mods;
 });
 
 app.whenReady().then( () => {
