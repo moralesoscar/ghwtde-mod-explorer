@@ -112,6 +112,4 @@ async function scan(modsPath: string) {
     
 }
 
-const dummypath = "games/Guitar Hero World Tour/DATA/MODS";
-
 export { scan };
